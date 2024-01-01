@@ -4,7 +4,7 @@ function getComputerChoice() {
     return choices[randomIndex]
 }
 
-function determineWinner(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase(); 
     computerSelection = computerSelection.toLowerCase(); 
    
@@ -13,7 +13,7 @@ function determineWinner(playerSelection, computerSelection) {
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')
     ) {
-        alert(`You won! You chose ${playerSelection} while the computer chose ${computerSelection}`);
+        return(`You won! You chose ${playerSelection} while the computer chose ${computerSelection}`);
     } 
     
     else if (
@@ -21,24 +21,57 @@ function determineWinner(playerSelection, computerSelection) {
         (playerSelection === 'rock' && computerSelection === 'paper') ||
         (playerSelection === 'paper' && computerSelection === 'scissors')
     ) {
-        alert(`You lost! You chose ${playerSelection} while the computer chose ${computerSelection}`);
+        return(`You lost! You chose ${playerSelection} while the computer chose ${computerSelection}`);
     }
 
     else {
-        return 'tie'
+        return true
     }
 }
 
-function playGame() {
-    let playerSelection = prompt('Please pick either Rock, Paper, or Scissors');
-    const computerSelection = getComputerChoice();
-
-    const result = determineWinner(playerSelection, computerSelection);
-
-    if (result === 'tie') {
-        alert('It\'s a tie! Let\'s play another round.');
-        playGame(); // Continue the game by calling playGame() again for the next round
-    } 
+const result = playRound(playerSelection, computerSelection);
+if (result === true) {
+    tie();
 }
 
-playGame();
+function tie() {
+    
+}
+
+
+
+
+
+
+// function playGameAgain() {
+//     let playerSelection = ('Please pick either Rock, Paper, or Scissors');
+//     const computerSelection = getComputerChoice();
+
+//     const result = determineWinner(playerSelection, computerSelection);
+
+//     if (result === 'tie') {
+//         console.log('It\'s a tie! Let\'s play another round.');
+//         playGame(); // Continue the game by calling playGame() again for the next round
+//     } 
+// }
+
+
+
+// function game() {
+//     let playerWins = 0;
+//     let computerWins = 0;
+//     for (let i = 0; i < 5; i++) {
+//         playGame();
+
+//      if (result === 'player') {
+//              playerWins++;
+//         } 
+//     else if (result === 'computer') {
+//             computerWins++;
+//         }
+//     }
+//     alert(`The final score is you with ${playerWins}, as for computer they have  ${computerWins}`)
+
+// }
+
+// game() 
