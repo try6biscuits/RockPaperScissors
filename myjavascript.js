@@ -25,22 +25,62 @@ function playRound(playerSelection, computerSelection) {
     }
 
     else {
-        return true
+            alert('there was a tie, lets play again!')
+            playMore()
     }
 }
 
-const result = playRound(playerSelection, computerSelection);
-if (result === true) {
-    tie();
-}
-
-function tie() {
-    
+function playMore() {
+    let playerSelection = prompt('')
+    const computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
 }
 
 
+function game() {
+    playMore()
+    playMore()
+    playMore()
+    playMore()
+    playMore()
+    let playerWins = 0;
+    let computerWins = 0;
+    for (let i = 0; i < 5; i++) {
+        playGame();
+
+     if (result === 'player') {
+             playerWins++;
+        } 
+    else if (result === 'computer') {
+            computerWins++;
+        }
+    }
+    alert(`The final score is you with ${playerWins}, as for computer they have  ${computerWins}`)
+
+}
 
 
+game()
+
+// const result = playRound(playerSelection, computerSelection);
+// if (result === true) {
+//     tie();
+// }
+
+// function tie() {
+//     playRound(playerSelection, computerSelection);
+// }
+
+// function tie() {
+//     const newResult = playRound(playerSelection, computerSelection);
+
+//     if (newResult === true) {
+//         console.log("It's a tie! Let's play another round.");
+//         tie(); // Recursive call if it's a tie
+//     } else {
+//         return newResult; // Return the win/loss result
+//     }
+// }
 
 
 // function playGameAgain() {
