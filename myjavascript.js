@@ -1,33 +1,46 @@
+let hasTied = false; // Variable to track if a tie has occurred
+
 function getComputerChoice() {
-    const choices = ["rock", "paper", "scissors"];
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    const randomChoice = choices[randomIndex]
-    return(randomChoice)
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  const randomChoice = choices[randomIndex];
+  return randomChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase
-    if (playerSelection === computerSelection) {
-        return("It's a tie! Retrying the round!");
-        playRound(playerSelection, computerSelection)
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+
+  if (playerSelection === computerSelection && !hasTied) {
+    const retry = prompt("It's a tie! Do you want to retry? Enter yes or no");
+    if (retry.toLowerCase() === 'yes') {
+      hasTied = true; // Set the flag to prevent further ties
+      playerSelection = prompt('Enter either rock, paper, or scissors');
+      return playRound(playerSelection, computerSelection); 
+    } else {
+      return "Game over! It's a tie.";
     }
 
-    else if ((playerSelection === 'rock' && computerSelection === 'scissors') ||
-       (playerSelection === 'paper' && computerSelection === 'rock' ) ||
-       (playerSelection === 'scissors' && computerSelection === 'paper' )) {
-        return(`You win! ${playerSelection} beats ${computerSelection}`)
-       }
-       
-    else if ((playerSelection === 'scissors' && computerSelection === 'rock') ||
-    (playerSelection === 'rock' && computerSelection === 'paper' ) ||
-    (playerSelection === 'paper' && computerSelection === 'scissors' )) {
-        return(`You lose! ${computerSelection} beats ${playerSelection}`)
-    }
-
+  } else if (playerSelection === computerSelection && hasTied) {
+    return "Game over! It's another tie.";
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    return `You win! ${playerSelection} beats ${computerSelection}`;
+  } else {
+    return `You lose! ${computerSelection} beats ${playerSelection}`;
+  }
 }
 
+function game() {
+  for (let i = 3; i > 0; i--) {
+    const computerSelection = getComputerChoice();
+    let playerSelection = prompt('Enter either rock, paper, or scissors');
+    const result = playRound(playerSelection, computerSelection);
+    console.log(result);
+  }
+}
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+game();
