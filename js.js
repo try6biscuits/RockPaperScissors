@@ -1,4 +1,3 @@
-// let hasTied = false; // Variable to track if a tie has occurred
 let playerScore = 0;
 let computerScore = 0;
 function getComputerChoice() {
@@ -21,7 +20,6 @@ function playRound(playerSelection, computerSelection) {
   else if (playerSelection === computerSelection) {
     const retry = prompt("It's a tie! Do you want to retry? Enter yes or no");
     if (retry.toLowerCase() === 'yes') {
-      // hasTied = true; // Set the flag to prevent further ties
       playerSelection = prompt('Enter either rock, paper, or scissors');
       return playRound(playerSelection, computerSelection); 
     } else {
